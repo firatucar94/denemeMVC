@@ -1,0 +1,13 @@
+﻿@model IEnumerable<denemeMVC.Models.Blog>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1>Index</h1>
+
+@foreach (var i in Model)
+{
+
+    <p>@i.Baslik</p>
+}
+
