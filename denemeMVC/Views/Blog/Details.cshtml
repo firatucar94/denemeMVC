@@ -4,79 +4,55 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="row">
+    <div class="col-md-8">
+        <h1>@Model.Baslik</h1>
+        <hr />
 
-<div>
-    <h4>Blog</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Category.KategoriAdi)
-        </dt>
+        <p>
+            <span class="glyphicon glyphicon-time"></span>
+            @Model.EklenmeTarihi
+        </p>
+        <hr />
 
-        <dd>
-            @Html.DisplayFor(model => model.Category.KategoriAdi)
-        </dd>
+        <img class="img-responsive" src="http://placehold.it/900x300" alt="" />
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Baslik)
-        </dt>
+        <hr />
 
-        <dd>
-            @Html.DisplayFor(model => model.Baslik)
-        </dd>
+        <blockquote>
+            <p>@Model.Aciklama</p>
+        </blockquote>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Aciklama)
-        </dt>
+        <p>
+            @Model.Icerik
+        </p>
 
-        <dd>
-            @Html.DisplayFor(model => model.Aciklama)
-        </dd>
+        <div class="comment">
+            <div class="well">
+                <h4>Yorum Yap :</h4>
+                <form role="form">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </form>
+            </div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Icerik)
-        </dt>
+        
 
-        <dd>
-            @Html.DisplayFor(model => model.Icerik)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EklenmeTarihi)
-        </dt>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.EklenmeTarihi)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Onay)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Onay)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Anasayfa)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Anasayfa)
-        </dd>
+    <div class="col-md-4">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Resim)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Resim)
-        </dd>
-
-    </dl>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+
+

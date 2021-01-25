@@ -11,6 +11,15 @@
     @Html.ActionLink("Yeni Blog Ekle", "Create",null,new {@class="btn btn-primary" })
 </p>
 <hr />
+@if (TempData["Blog"]!=null)
+{
+    var blog = (denemeMVC.Models.Blog)TempData["Blog"];
+    <div class="alert alert-success" role="alert">
+        <strong><span class="glyphicon glyphicon-ok" ></span>  @blog.Baslik </strong> Kayıt Edildi.
+    </div>
+}
+
+
 <table class="table table-bordered table-hover table-striped">
     <tr>
         <th>
@@ -71,8 +80,7 @@
             @Html.DisplayFor(modelItem => item.Resim)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }, new { @class="btn btn-warning btn-xs"}) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }, new { @class = "btn btn-primary btn-xs" }) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }, new { @class="btn btn-warning btn-xs"}) |            
             @Html.ActionLink("Delete", "Delete", new { id=item.Id }, new { @class = "btn btn-danger btn-xs" })
         </td>
     </tr>

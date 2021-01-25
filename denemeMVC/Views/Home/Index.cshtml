@@ -1,13 +1,37 @@
-﻿@model IEnumerable<denemeMVC.Models.Blog>
+﻿@model IEnumerable<denemeMVC.Models.BlogModel>
 @{
     ViewBag.Title = "Home Page";
 }
 
-<h1>Index</h1>
+<h1>Blog Listesi</h1>
 
-@foreach (var i in Model)
-{
+<div class="row">
+    <div class="col-md-8">
 
-    <p>@i.Baslik</p>
-}
+        @foreach (var blog in Model)
+        {
+        <div class="blog">
+            <h3 class="page-header">
+                @blog.Baslik
+            </h3>
+            <p>
+                <span class="glyphicon glyphicon-time"></span>
+                @blog.EklenmeTarihi
+            </p>
+            <hr />
+            <img class="img-responsive" src="http://placehold.it/900x300" alt=" " />
+            <hr />
+            <p>
+                @blog.Aciklama
+            </p>
+            @Html.ActionLink("Daha Fazla...","Details","Blog",new { id=@blog.Id},new { @class = "btn btn-primary" })            
+        </div>
+        }
+
+    </div>
+    <div class="col-md-4"></div>
+
+</div>
+
+
 

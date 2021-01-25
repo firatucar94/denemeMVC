@@ -17,7 +17,7 @@ namespace denemeMVC.Controllers
         // GET: Blog
         public ActionResult Index()
         {
-            var blogs = db.Blogs.Include(b => b.Category);
+            var blogs = db.Blogs.Include(b => b.Category).OrderByDescending(i=>i.EklenmeTarihi);
             return View(blogs.ToList());
         }
 
@@ -48,10 +48,13 @@ namespace denemeMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Baslik,Aciklama,Icerik,EklenmeTarihi,Onay,Anasayfa,Resim,CategoryId")] Blog blog)
+        public ActionResult Create([Bind(Include = "Baslik,Aciklama,Icerik,Resim,CategoryId")] Blog blog)
         {
             if (ModelState.IsValid)
             {
+                blog.EklenmeTarihi = DateTime.Now;
+                
+
                 db.Blogs.Add(blog);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,13 +85,28 @@ namespace denemeMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Baslik,Aciklama,Icerik,EklenmeTarihi,Onay,Anasayfa,Resim,CategoryId")] Blog blog)
+        public ActionResult Edit([Bind(Include = "Id,Baslik,Aciklama,Icerik,Onay,Anasayfa,Resim,CategoryId")] Blog blog)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(blog).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var entity = db.Blogs.Find(blog.Id);
+                if (entity !=null)
+                {
+                    entity.Baslik = blog.Baslik;
+                    entity.Aciklama = blog.Aciklama;
+                    entity.Resim = blog.Resim;
+                    entity.Icerik = blog.Icerik;
+                    entity.Onay = blog.Onay;
+                    entity.Anasayfa = blog.Anasayfa;
+                    entity.CategoryId = blog.CategoryId;
+
+                    db.SaveChanges();
+
+                    TempData["Blog"] = entity;
+                    return RedirectToAction("Index");
+                }
+
+               
             }
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "KategoriAdi", blog.CategoryId);
             return View(blog);
