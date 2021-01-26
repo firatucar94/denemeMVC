@@ -14,6 +14,11 @@ namespace denemeMVC.Controllers
     {
         private BlogContext db = new BlogContext();
 
+        public PartialViewResult KategoriListesi()
+        {
+            return PartialView(db.Categories.ToList());
+        }
+
         // GET: Category
         public ActionResult Index()
         {

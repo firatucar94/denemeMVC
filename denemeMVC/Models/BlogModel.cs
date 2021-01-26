@@ -14,5 +14,6 @@ namespace denemeMVC.Models
         public bool Onay { get; set; }
         public bool Anasayfa { get; set; }
         public string Resim { get; set; }
+        public int CategoryId { get; set; }
     }
 }

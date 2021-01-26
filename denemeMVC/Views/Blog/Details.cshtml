@@ -4,54 +4,46 @@
     ViewBag.Title = "Details";
 }
 
-<div class="row">
-    <div class="col-md-8">
-        <h1>@Model.Baslik</h1>
-        <hr />
 
-        <p>
-            <span class="glyphicon glyphicon-time"></span>
-            @Model.EklenmeTarihi
-        </p>
-        <hr />
 
-        <img class="img-responsive" src="http://placehold.it/900x300" alt="" />
+<h1>@Model.Baslik</h1>
+<hr />
 
-        <hr />
+<p>
+    <span class="glyphicon glyphicon-time"></span>
+    @Model.EklenmeTarihi
+</p>
+<hr />
 
-        <blockquote>
-            <p>@Model.Aciklama</p>
-        </blockquote>
+<img class="img-responsive" src="http://placehold.it/900x300" alt="" />
 
-        <p>
-            @Model.Icerik
-        </p>
+<hr />
 
-        <div class="comment">
-            <div class="well">
-                <h4>Yorum Yap :</h4>
-                <form role="form">
-                    <div class="form-group">
-                        <textarea class="form-control" rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Kaydet</button>
-                </form>
+<blockquote>
+    <p>@Model.Aciklama</p>
+</blockquote>
+
+<p>
+    @Model.Icerik
+</p>
+
+<div class="comment">
+    <div class="well">
+        <h4>Yorum Yap :</h4>
+        <form role="form">
+            <div class="form-group">
+                <textarea class="form-control" rows="3"></textarea>
             </div>
-        </div>
-
-        
-
-
-    </div>
-
-
-
-
-
-    <div class="col-md-4">
-
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+        </form>
     </div>
 </div>
+
+@section SagKolon {
+    @{ Html.RenderAction("KategoriListesi", "Category");}
+
+}
+
 
 
 
